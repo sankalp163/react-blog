@@ -1,45 +1,70 @@
-import React from 'react';
-import topbar from './topbar.css'; 
-import {Search, Person, Chat, Notifications} from '@material-ui/icons';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./topbar.css";
 
-function Topbar() {
-    return (
-        <div className="topbarContainer">
-            <div className="topbarLeft">
-                <span className="logo">The Socialite</span>
-            </div>
-            <div className="topbarCenter">
-                <div className="searchbar">
-                    <Search />
-                    <input 
-                    placeholder="Search for a friend, post or video"
-                    className="searchInput"
-                    />
-                </div>
-            </div>
-            <div className="topbarRight">
-                <div className="topbarLinks">
-                    <span className="topbarLink">Homepage</span>
-                    <span className="topbarLink">Timeline</span>
-                </div>
-                <div className="topbarIcon">
-                    <div className="topbarIconItem">
-                        <Person />
-                        <span className="topbarIconBadge">1</span>
-                    </div>
-                    <div className="topbarIconItem">
-                        <Chat />
-                        <span className="topbarIconBadge">1</span>
-                    </div>
-                    <div className="topbarIconItem">
-                        <Notifications />
-                        <span className="topbarIconBadge">1</span>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    )
+function TopBar() {
+  const user = false;
+  return (
+    <div className="top">
+      <div className="topLeft">
+        <i className=" topIcon fab fa-instagram-square"></i>
+        <i className=" topIcon fab fa-linkedin"></i>
+      </div>
+      <div className="topCenter">
+        <ul className="topList">
+          <li className="topListItem">
+            <Link className="link" to="/">
+              HOME
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/">
+              ABOUT
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/">
+              CONTACT
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/write">
+              WRITE
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/">
+              {user && "LOGOUT"}
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className="topRight">
+        {user ? (
+          <img
+            className="topImg"
+            src="https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5f469ea85cc82fc8d6083f05%2FAmazon-Founder-and-CEO-Jeff-Bezos%2F960x0.jpg%3Ffit%3Dscale"
+            alt=""
+          />
+        ) : (
+          <ul className="topList">
+            <li className="topListItem">
+              <Link className="link" to="/login">
+                LOGIN
+              </Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/register">
+                REGISTER
+              </Link>
+            </li>
+          </ul>
+        )}
+
+        <i className=" searchIcon fas fa-search"></i>
+      </div>
+    </div>
+  );
 }
 
-export default Topbar;
+export default TopBar;
